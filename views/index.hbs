@@ -1,3 +1,14 @@
 <h1> Chefy </h1>
-
+<br>
 {{ greeting }} world!
+<br>
+<br>
+{{#if user}}
+You are currently logged in as {{user.username}}
+<br>
+<a href="/logout">Logout</a>
+{{else}}
+To proceed, you must login first.
+<br>
+<a href="/login">Login</a> | <a href="/register">Register</a>
+{{/if}}
