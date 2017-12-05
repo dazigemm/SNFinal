@@ -121,11 +121,15 @@ app.get('/buy', function(req,res) {
 
 // for now, just show a confirmation message
 app.post('/buy', function(req,res) {
-	res.redirect('success');
+	res.redirect('review');
 });
 
-app.get('/success', function(req, res) {
-	res.render('success');
+app.get('/review', function(req, res) {
+	res.render('review');
+});
+
+app.post('/review', function(req, res) {
+	res.send('thank you for your input');
 });
 /****************************************************************/
 
