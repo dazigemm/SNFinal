@@ -1,6 +1,6 @@
 <h1> Chefy </h1>
 <br>
-{{ greeting }} world!
+Welcome!
 <hr>
 {{#if user}}
 You are currently logged in as {{user.username}}.
@@ -17,4 +17,8 @@ What would you like to do?
 To proceed, you must login first.
 <br>
 <a href="/login">Login</a> | <a href="/register">Register</a>
+{{/if}}
+<br>
+{{#if success}}
+Yay your purchase has been a success. Hope you enjoy your meal!
 {{/if}}

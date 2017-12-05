@@ -1,4 +1,6 @@
 <h1> Which meal do you want to buy? </h1>
+<! implement some kind of filter function here?>
+<hr>
 {{#if meals}}
 	<form action="/buy" method="post">
 		{{#each meals}}
@@ -13,6 +15,7 @@
 			Delivery Details: {{deliveryDetails}}
 			<br>
 		{{/each}}
+		<input type="submit" value="Buy Now!">
 	</form>
 {{else}}
 	<h2> Sorry, there are no meals available at this time :'( </h2>

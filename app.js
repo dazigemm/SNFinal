@@ -38,7 +38,7 @@ app.use(passport.session());
 app.get('/', function(req, res) {
 
 	//res.send('hello');
-	res.render('index', {greeting: 'Salutations', user: req.user});
+	res.render('index', {user: req.user});
 });
 
 /************* User Authentication Stuff *****************/
@@ -82,7 +82,7 @@ app.get('/sell', function(req,res) {
 
 // save meal posted to db
 app.post('/sell', function(req,res) {
-	console.log(req.body.mealName);
+	//console.log(req.body.mealName);
 	var dBoo = req.body.delivery;
 	if (dBoo == 'yes') {
 		dBoo = true;
@@ -112,10 +112,14 @@ app.get('/buy', function(req,res) {
 	});
 });
 
+// for now, just show a confirmation message
 app.post('/buy', function(req,res) {
-
+	res.redirect('success');
 });
 
+app.get('/success', function(req, res) {
+	res.render('success');
+});
 /****************************************************************/
 
 app.listen(3000);
