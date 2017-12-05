@@ -1,0 +1,37 @@
+<h1> Add a New Meal </h1>
+<p> Tell us a little information about the meal you're selling. </p>
+
+<form action="/sell" method="post">
+	Upload a picture of your food:
+	<br>
+	<input type="file" name="pic" accept="image/*">
+	<br>
+	<h2> Meal Info </h2>
+	<input type="text" value="Meal Name" name="mealName">
+	<br>
+	Meal Price (USD):
+	<br>
+	<input type="number" name="mealPrice">
+	<br>
+	<textarea rows="5" cols="50" name="extraDetails">Extra Details</textarea>
+	<br>
+	<select name="cuisine">
+		<option value="American">American</option>
+		<option value="Chinese">Chinese</option>
+		<option value="Dessert">Dessert</option>
+		<option value="Indian">Indian</option>
+		<option value="Italian">Italian</option>
+		<option value="Japanese">Japanese</option>
+		<option value="Korean">Korean</option>
+		<option value="Other">Other</option>
+	</select>
+	<br>
+	<h2> Delivery Info </h2>
+	Is this meal deliverable?
+	<br>
+	<input type="radio" name="delivery" value="yes"> Yes
+	<br>
+	<input type="radio" name="delivery" value="no"> No
+	<br>
+	<input type="submit" value="Post Your Meal!">
+</form>

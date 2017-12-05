@@ -72,7 +72,25 @@ app.get('/logout', function(req, res) {
 	res.redirect('/');
 });
 
-/***************************************************************************/
+/*************************** Other Routes ************************/
+
+app.get('/buy', function(req,res) {
+	res.render('buy');
+});
+
+app.post('/buy', function(req,res) {
+
+});
+
+app.get('/sell', function(req,res) {
+	res.render('sell');
+});
+
+app.post('/sell', function(req,res) {
+
+});
+
+/****************************************************************/
 
 app.listen(3000);
 console.log('Started server on port 3000');
