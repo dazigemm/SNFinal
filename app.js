@@ -75,19 +75,44 @@ app.get('/logout', function(req, res) {
 
 /*************************** Other Routes ************************/
 
-app.get('/buy', function(req,res) {
-	res.render('buy');
-});
-
-app.post('/buy', function(req,res) {
-
-});
-
+// give chef form to post meal
 app.get('/sell', function(req,res) {
 	res.render('sell');
 });
 
+// save meal posted to db
 app.post('/sell', function(req,res) {
+	console.log(req.body.mealName);
+	var dBoo = req.body.delivery;
+	if (dBoo == 'yes') {
+		dBoo = true;
+	}
+	else {
+		dBoo = false;
+	}
+	new Meal({
+		mealName: req.body.mealName,
+		mealPrice: req.body.mealPrice,
+		extraDetails: req.body.extraDetails,
+		cuisine: req.body.cuisine,
+		delivery: dBoo,
+		deliveryDetails: req.body.deliveryDetails
+	}).save(function(err, meal, count) {
+		res.redirect('/');
+	});
+});
+
+// find all meals and list them
+app.get('/buy', function(req,res) {
+	//res.render('sell');
+	Meal.find(function(err, meals, count) {
+		res.render('buy', {
+			meals: meals
+		});
+	});
+});
+
+app.post('/buy', function(req,res) {
 
 });
 

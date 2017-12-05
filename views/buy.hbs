@@ -1,0 +1,21 @@
+<h1> Which meal do you want to buy? </h1>
+{{#if meals}}
+	<form action="/buy" method="post">
+		{{#each meals}}
+			<input type="radio" name="meals" value={{mealName}}> {{mealName}} - ${{mealPrice}}
+			<br>
+			Cuisine: {{cuisine}}
+			<br>
+			Details: {{extraDetails}}
+			<br>
+			Delivery: {{#if delivery}} Yes {{else}} No {{/if}}
+			<br>
+			Delivery Details: {{deliveryDetails}}
+			<br>
+		{{/each}}
+	</form>
+{{else}}
+	<h2> Sorry, there are no meals available at this time :'( </h2>
+{{/if}}
+<hr>
+<a href="/"> Back Home </a>
