@@ -77,6 +77,11 @@ app.get('/logout', function(req, res) {
 
 // give chef form to post meal
 app.get('/sell', function(req,res) {
+	if (req.user === undefined) {
+		res.render('login');
+	//res.render('sell');
+
+	}
 	res.render('sell');
 });
 
@@ -90,7 +95,9 @@ app.post('/sell', function(req,res) {
 	else {
 		dBoo = false;
 	}
+	//console.log("user name: " + req.user);
 	new Meal({
+		chef: req.user.username,
 		mealName: req.body.mealName,
 		mealPrice: req.body.mealPrice,
 		extraDetails: req.body.extraDetails,
@@ -98,7 +105,7 @@ app.post('/sell', function(req,res) {
 		delivery: dBoo,
 		deliveryDetails: req.body.deliveryDetails
 	}).save(function(err, meal, count) {
-		res.redirect('/');
+		res.redirect('/buy');
 	});
 });
 

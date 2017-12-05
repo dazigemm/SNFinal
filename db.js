@@ -1,13 +1,21 @@
+//var http = require('http');
 const mongoose = require('mongoose');
 //const URLSlugs = require('mongoose-url-slugs');
 const passportLocalMongoose = require('passport-local-mongoose');
-
+/*
+var uristring = process.env.MONGOLAB_URI ||
+	process.env.MONGOHO_URL ||
+	'mongodb://localhost/HelloMongoose';
+var theport = process.env.PORT || 5000;
+*/
 const User = new mongoose.Schema({
 	name: String,
-	password: String
+	password: String,
+	rating: Number
 });
 
 const Meal = new mongoose.Schema({
+	chef: String,
 	mealName: String,
 	mealPrice: Number,
 	extraDetails: String,
@@ -20,7 +28,7 @@ User.plugin(passportLocalMongoose);
 
 mongoose.model('User', User);
 mongoose.model('Meal', Meal);
-/*
+//*
 if(process.env.NODE_ENV === 'PRODUCTION') {
 	var fs = require('fs');
 	var path = require('path');
@@ -33,5 +41,16 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
 else {
 	dbconf = 'mongodb://localhost/chefy';
 }
+
+mongoose.connect(dbconf);
+//*/
+/*
+mongoose.connect(uristring, function (err, res) {
+	if (err) {
+		console.log('ERROR connecting to: ' + uristring + '. '  err);
+	}
+	else {
+		console.long('Succeeded to connect to : " + uristring);
+		}
+	});
 */
-mongoose.connect('mongodb://localhost/chefy');//dbconf);
