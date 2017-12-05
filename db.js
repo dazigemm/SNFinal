@@ -7,8 +7,18 @@ const User = new mongoose.Schema({
 	password: String
 });
 
+const Meal = new mongoose.Schema({
+	mealName: String,
+	mealPrice: Number,
+	extraDetails: String,
+	cuisine: String,
+	delivery: Boolean,
+	deliveryDetails: String
+});
+
 User.plugin(passportLocalMongoose);
 
 mongoose.model('User', User);
+mongoose.model('Meal', Meal);
 
 mongoose.connect('mongodb://localhost/chefy');

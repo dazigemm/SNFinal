@@ -23,6 +23,7 @@ app.use(session(sessionOptions));
 require('./db');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Meal = mongoose.model('Meal');
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
