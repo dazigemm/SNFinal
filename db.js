@@ -20,5 +20,18 @@ User.plugin(passportLocalMongoose);
 
 mongoose.model('User', User);
 mongoose.model('Meal', Meal);
+/*
+if(process.env.NODE_ENV === 'PRODUCTION') {
+	var fs = require('fs');
+	var path = require('path');
+	var fn = path.join(__dirname, 'config.json');
+	var data = fs.readFileSync(fn);
 
-mongoose.connect('mongodb://localhost/chefy');
+	var conf = JSON.parse(data);
+	var dbconf = conf.dbconf;
+}
+else {
+	dbconf = 'mongodb://localhost/chefy';
+}
+*/
+mongoose.connect('mongodb://localhost/chefy');//dbconf);
