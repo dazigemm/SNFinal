@@ -61,7 +61,7 @@ app.get('/auth/heroku/callback',
 	});
 app.use(passport.initialize());
 app.use(passport.session());
-require('./path/to/passport/config/file')(passport);
+
 /* *** */
 
 app.get('/', function(req, res) {
