@@ -26,15 +26,15 @@ const User = mongoose.model('User');
 const Meal = mongoose.model('Meal');
 
 const passport = require('passport');
-/*
+//*
 const LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
-*/
-
+//*/
+/*
 const HerokuStrategy = require('passport-heroku').Strategy;
 const HEROKU_CLIENT_ID = process.env.HEROKU_CLIENT_ID;
 const HEROKU_CLIENT_SECRET = process.env.HEROKU_CLIENT_SECRET;
@@ -62,7 +62,7 @@ app.get('/auth/heroku/callback',
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* *** */
+/* *********************************************************** */
 
 app.get('/', function(req, res) {
 
@@ -76,7 +76,7 @@ app.get('/login', function (req, res) {
 	res.render('login', {user: req.user});
 });
 
-app.post('/login', passport.authenticate('heroku'), function(req, res) {
+app.post('/login', passport.authenticate('local'), function(req, res) {
 	res.redirect('/');
 });
 
