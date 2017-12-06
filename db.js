@@ -29,8 +29,7 @@ User.plugin(passportLocalMongoose);
 mongoose.model('User', User);
 mongoose.model('Meal', Meal);
 
-var uristring = process.env.MONGOLAB_URI || 
-	process.env.MONGOHQ_URL ||
+var uristring = process.env.MONGODB_URI ||
 	'mongodb://localhost/HelloMongoose';
 
 var theport = process.env.PORT || 5000;
