@@ -36,8 +36,8 @@ app.use(passport.session());
 */
 
 const HerokuStrategy = require('passport-heroku').Strategy;
-const HEROKU_CLIENT_ID = process.env.HEROKU_APP_ID;
-const HEROKU_CLIENT_SECRET = process.env.HEROKU_APP_SECRET;
+const HEROKU_CLIENT_ID = process.env.HEROKU_OAUTH_ID;
+const HEROKU_CLIENT_SECRET = process.env.HEROKU_OAUTH_SECRET;
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
