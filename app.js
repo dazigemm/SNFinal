@@ -59,6 +59,9 @@ app.get('/auth/heroku/callback',
 	function(req,res) {
 		res.redirect('/');
 	});
+app.use(passport.initialize());
+app.use(passport.session());
+
 /* *** */
 
 app.get('/', function(req, res) {
