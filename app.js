@@ -35,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 */
 
-const herokuStrategy = require('passport-heroku').Strategy;
+const HerokuStrategy = require('passport-heroku').Strategy;
 const HEROKU_CLIENT_ID = process.env.HEROKU_CLIENT_ID;
 const HEROKU_CLIENT_SECRET = process.env.HEROKU_CLIENT_SECRET;
 
