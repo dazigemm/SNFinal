@@ -76,7 +76,7 @@ app.get('/login', function (req, res) {
 	res.render('login', {user: req.user});
 });
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
+app.post('/login', passport.authenticate('heroku'), function(req, res) {
 	res.redirect('/');
 });
 
