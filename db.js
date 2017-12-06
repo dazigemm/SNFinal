@@ -30,6 +30,7 @@ mongoose.model('User', User);
 mongoose.model('Meal', Meal);
 
 var uristring = process.env.MONGOLAB_URI || 
+	process.env.MONGOHQ_URL ||
 	'mongodb://localhost/HelloMongoose';
 
 var theport = process.env.PORT || 5000;
