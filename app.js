@@ -54,7 +54,7 @@ app.use(new HerokuStrategy({
 	}
 ));
 
-app.bet('/auth/heroku/callback',
+app.get('/auth/heroku/callback',
 	passport.authenticate('heroku', {failureRedirect: '/login'}),
 	function(req,r es) {
 		res.redirect('/');
