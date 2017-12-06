@@ -42,7 +42,7 @@ const HEROKU_CLIENT_SECRET = process.env.HEROKU_CLIENT_SECRET;
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(new HerokuStrategy({
+passport.use(new HerokuStrategy({
 	clientID: HEROKU_CLIENT_ID,
 	clientSecret: HEROKU_CLIENT_SECRET,
 	callbackURL: "http://127.0.0.1:3000/auth/heroku/callback"
