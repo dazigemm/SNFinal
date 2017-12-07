@@ -98,6 +98,7 @@ app.post('/sell', function(req,res) {
 		dBoo = false;
 	}
 	//console.log("user name: " + req.user);
+	console.log("pic: " + req.body.pic);
 	new Meal({
 		chef: req.user.username,
 		mealName: req.body.mealName,

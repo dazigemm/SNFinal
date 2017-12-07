@@ -10,6 +10,7 @@ const User = new mongoose.Schema({
 
 const Meal = new mongoose.Schema({
 	chef: String,
+	img: {data: Buffer, contentType: String},
 	mealName: String,
 	mealPrice: Number,
 	extraDetails: String,
