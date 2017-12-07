@@ -4,6 +4,9 @@
 {{#if meals}}
 	<form action="/buy" method="post">
 		{{#each meals}}
+			<br>
+			<img src={{imgPath}}>
+			<br>
 			<input type="radio" name="meals" value={{mealName}}> {{mealName}} - ${{mealPrice}}
 			<br>
 			Sold by: {{chef}}

@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
-
 const publicPath = path.resolve(__dirname, 'public');
 app.use(express.static(publicPath));
 
@@ -35,6 +34,22 @@ passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// to help with imgs
+const fs = require('fs');
+const multer = require('multer');
+const crypto = require('crypto');
+// prob not a good idea to store these images publically....
+var storage = multer.diskStorage({
+	destination: 'public/img/',
+	filename: function (req, file, cb) {
+		crypto.pseudoRandomBytes(16, function (err, raw) {
+			if (err) return cb(err)
+			cb(null, raw.toString('hex') + path.extname(file.originalname))
+		})
+	}
+});
+//const upload = multer({dest: 'uploads/'});
+const upload = multer({storage: storage});
 /* ********************* ROUTES *********************** */
 
 app.get('/', function(req, res) {
@@ -88,7 +103,7 @@ app.get('/sell', function(req,res) {
 });
 
 // save meal posted to db
-app.post('/sell', function(req,res) {
+app.post('/sell', upload.single('pic'), function(req,res) {
 	//console.log(req.body.mealName);
 	var dBoo = req.body.delivery;
 	if (dBoo == 'yes') {
@@ -98,16 +113,20 @@ app.post('/sell', function(req,res) {
 		dBoo = false;
 	}
 	//console.log("user name: " + req.user);
-	console.log("pic: " + req.body.pic);
-	new Meal({
+	//console.log("pic: " + req.file);
+	console.log("pic path: " + req.file.path);
+	var newMeal = new Meal({
 		chef: req.user.username,
+		imgPath: req.file.path.replace(/\\/g,"/").substring(7),
 		mealName: req.body.mealName,
 		mealPrice: req.body.mealPrice,
 		extraDetails: req.body.extraDetails,
 		cuisine: req.body.cuisine,
 		delivery: dBoo,
 		deliveryDetails: req.body.deliveryDetails
-	}).save(function(err, meal, count) {
+	});
+	console.log(newMeal);
+	newMeal.save(function(err, meal, count) {
 		res.redirect('/buy');
 	});
 });
