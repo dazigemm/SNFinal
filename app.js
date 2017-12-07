@@ -114,7 +114,7 @@ app.post('/sell', upload.single('pic'), function(req,res) {
 	}
 	//console.log("user name: " + req.user);
 	//console.log("pic: " + req.file);
-	console.log("pic path: " + req.file.path);
+	//console.log("pic path: " + req.file.path);
 	var newMeal = new Meal({
 		chef: req.user.username,
 		imgPath: req.file.path.replace(/\\/g,"/").substring(7),
@@ -125,7 +125,7 @@ app.post('/sell', upload.single('pic'), function(req,res) {
 		delivery: dBoo,
 		deliveryDetails: req.body.deliveryDetails
 	});
-	console.log(newMeal);
+	//console.log(newMeal);
 	newMeal.save(function(err, meal, count) {
 		res.redirect('/buy');
 	});
