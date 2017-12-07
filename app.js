@@ -8,7 +8,7 @@ const publicPath = path.resolve(__dirname, 'public');
 app.use(express.static(publicPath));
 
 app.set('view engine', 'hbs');
-//*
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -20,49 +20,22 @@ const sessionOptions = {
 };
 app.use(session(sessionOptions));
 
+// link db
 require('./db');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Meal = mongoose.model('Meal');
 
+// set up passport.js
 const passport = require('passport');
-//*
 const LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
-//*/
-/*
-const HerokuStrategy = require('passport-heroku').Strategy;
-const HEROKU_CLIENT_ID = process.env.HEROKU_CLIENT_ID;
-const HEROKU_CLIENT_SECRET = process.env.HEROKU_CLIENT_SECRET;
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-passport.use(new HerokuStrategy({
-	clientID: HEROKU_CLIENT_ID,
-	clientSecret: HEROKU_CLIENT_SECRET,
-	callbackURL: "http://127.0.0.1:3000/auth/heroku/callback"
-	},
-	function(accessToken, refreshToken, profile, done) {
-		process.nextTick(function() {
-			return done(null, profile);
-		});
-	}
-));
-
-app.get('/auth/heroku/callback',
-	passport.authenticate('heroku', {failureRedirect: '/login'}),
-	function(req,res) {
-		res.redirect('/');
-	});
-app.use(passport.initialize());
-app.use(passport.session());
-
-/* *********************************************************** */
+/* ********************* ROUTES *********************** */
 
 app.get('/', function(req, res) {
 
@@ -158,9 +131,10 @@ app.get('/review', function(req, res) {
 });
 
 app.post('/review', function(req, res) {
+	// save review under chef's rating?
 	res.send('thank you for your input');
 });
 /****************************************************************/
 
-app.listen(process.env.PORT || 5000);//3000);
-//console.log('Started server on port 3000');
+app.listen(process.env.PORT || 5000);
+//console.log('Started server on port 5000');
